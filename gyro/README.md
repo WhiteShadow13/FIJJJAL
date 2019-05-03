@@ -19,4 +19,6 @@ The L3G4200D is a triple axis gyroscope. Our module  don’t has a spinning whee
 
 to run : 
 
-- g++
+- g++ -o gyro *.cpp
+
+- ./gyro
