@@ -89,7 +89,7 @@ To write on a card informations, you have to define the sector (in red) and the 
 
 ![picture alt](https://plaisirarduino.fr/arduino/wp-content/uploads/2018/07/contenue-RFID.png "RFID card structure")
 
-`Don't modify the block 0` because sometime it can't be modified because it contains the UID. Some cards allow to modify the UID and others don't.
+<span style="color:red">Don't write the last block of each sector</span> because sometime it can't be modified because it contains the UID. Some cards allow to modify the UID and others don't.
 
 `Don't write the last block of each sector` because it can make the card unuseable (example : sector 1 block 7, sector 2 block 11, ...).
 
