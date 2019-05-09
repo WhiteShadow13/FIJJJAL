@@ -6,12 +6,12 @@ A commun gyrscope is a device used for measuring or maintaining orientation and 
 
 In electronic we use gyro sensors, also known as angular rate sensors or angular velocity sensors, are devices that sense angular velocity.
 
-![picture alt](gyro/gyro.png)
+![picture alt](gyro.png)
 
 Vibration gyro sensors sense angular velocity from the Coriolis force applied to a vibrating object.
 Here an example Epson 's double-T structure crystal element.
 
-![picture alt](gyro/gyro2.png)
+![picture alt](gyro2.png)
 
 ## L3G4200D
 
