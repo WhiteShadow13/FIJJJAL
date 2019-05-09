@@ -6,7 +6,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-
+#include "struct.h"
 #include "gyro.h"
 
 using namespace std;
@@ -39,11 +39,13 @@ void Gyro::i2cInitialise(char *bus, char address) {
 }
 
 //Read X and Y
-void Gyro::readXY() {
+XY Gyro::readXY() {
+	XY xy;
 	// Read xGyro lsb, msb data from register(0x28, 0x29)
-	this->xy.x = this->readAxis(0x28, 0x29);
+	xy.x = this->readAxis(0x28, 0x29);
 	// Read yGyro lsb, msb data from register(0x2A, 0x2B)
-	this->xy.y = this->readAxis(0x2A, 0x2B);
+	xy.y = this->readAxis(0x2A, 0x2B);
+	return xy;
 }
 
 //Read Axis
