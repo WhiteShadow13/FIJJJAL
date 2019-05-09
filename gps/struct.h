@@ -8,8 +8,8 @@ struct gpgga {
     char lat;
     double longitude;
     char lon;
-    int quality; //uint8_t
-    int satellites; //uint8_t
+    int quality;
+    int satellites; 
     double altitude;
 };
 typedef struct gpgga gpgga_t;

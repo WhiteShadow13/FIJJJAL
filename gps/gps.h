@@ -21,6 +21,6 @@ class Gps
         NMEA nmea;
 
         void gpsConvert(double *, char, double *, char);
-        double gpsDegDec(double);
+        double gpsDegToDec(double);
 };
 #endif

@@ -12,6 +12,7 @@ NMEA::NMEA() {
 
 }
 
+//NMEA parse gpgga format
 void NMEA::parseGPGGA(char *nmea, gpgga_t *loc)
 {
     char *p = nmea;
@@ -62,6 +63,7 @@ void NMEA::parseGPGGA(char *nmea, gpgga_t *loc)
     loc->altitude = atof(p);
 }
 
+//NMEA parse gprmc format
 void NMEA::parseGPRMC(char *nmea, gprmc_t *loc)
 {
     char *p = nmea;
@@ -108,6 +110,7 @@ void NMEA::parseGPRMC(char *nmea, gprmc_t *loc)
     loc->course = atof(p);
 }
 
+//Get coordonate type on message from serial bus
 int NMEA::getMessageType(const char *message)
 {
     if (strstr(message, "$GPGGA") != NULL) {

@@ -11,11 +11,13 @@ using namespace std;
 Serial::Serial() {
 }
 
+//Init serial communication
 void Serial::serialInit(char *bus){
     this->file = open(bus, O_RDWR | O_NOCTTY | O_NDELAY);
     serialConfig();
 }
 
+//Config serial communication
 void Serial::serialConfig(void)
 {
     struct termios options;
@@ -28,6 +30,7 @@ void Serial::serialConfig(void)
     tcsetattr(this->file, TCSANOW, &options);
 }
 
+//Function to print on serial bus
 void Serial::serialPrint(const char *line, int len)
 {
     if (this->file != -1) {
@@ -41,6 +44,7 @@ void Serial::serialPrint(const char *line, int len)
     }
 }
 
+//Function to read on serial bus
 void Serial::serialRead(char *buffer, int len)
 {
     char c;
@@ -61,6 +65,7 @@ void Serial::serialRead(char *buffer, int len)
     }
 }
 
+//Close serial communication
 void Serial::serialClose(void)
 {
     close(this->file);

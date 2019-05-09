@@ -9,15 +9,18 @@
 
 using namespace std;
 
+//Constuctor, take nmea and serial object
 Gps::Gps() {
     nmea = NMEA();
     serial = Serial();
 }
 
+//Init gps on serial port /dev/ttyAMA0(raspberry)
 void Gps::gpsInit() {
     serial.serialInit("/dev/ttyAMA0");
 }
 
+//Get location 
 void Gps::gpsLocation(loc_t *coord) {
     int status = 0;
     while(status != 1) {
@@ -25,7 +28,9 @@ void Gps::gpsLocation(loc_t *coord) {
         gprmc_t gprmc;
         char buffer[256];
 
+        //Get message on serial bus
         serial.serialRead(buffer, 256);
+        //Parse message
         switch (nmea.getMessageType(buffer)) {
             case 1:
                 nmea.parseGPGGA(buffer, &gpgga);
@@ -50,16 +55,17 @@ void Gps::gpsLocation(loc_t *coord) {
     }   
 }
 
+//Convert lat and lon to decimals (from deg)
 void Gps::gpsConvert(double *latitude, char ns,  double *longitude, char we)
 {
     double lat = (ns == 'N') ? *latitude : -1 * (*latitude);
     double lon = (we == 'E') ? *longitude : -1 * (*longitude);
 
-    *latitude = gpsDegDec(lat);
-    *longitude = gpsDegDec(lon);
+    *latitude = gpsDegToDec(lat);
+    *longitude = gpsDegToDec(lon);
 }
 
-double Gps::gpsDegDec(double deg_point)
+double Gps::gpsDegToDec(double deg_point)
 {
     double ddeg;
     double sec = modf(deg_point, &ddeg)*60;
