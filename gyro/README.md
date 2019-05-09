@@ -26,7 +26,8 @@ The L3G4200D is a triple axis gyroscope. Which means that it captures the angula
  For more informations the complete datasheet here (https://www.generationrobots.com/media/ModuleGyroscope27911/27911-L3G4200D-Gyroscope-Manufacturer-Datasheet.pdf)
 
 ## Code
-
+ 
+ 
 to run : 
 
 - g++ -o gyro *.cpp
