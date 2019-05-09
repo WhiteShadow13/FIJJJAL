@@ -78,10 +78,11 @@ In this project, we used the most common card with a frequency of 13,56MHz.
 
 ### Structure
 
-A RFID card is divided in many sectors subdivided in blocks which is also subdivided in datas.
-There are : * 16 sectors
-            * 4 blocks per sector (64 in total)
-            * 16 datas per block (each data is a number of 8 bits)
+A RFID card is divided in many sectors subdivided in blocks which is also subdivided in datas. <br>
+There are : 
+* 16 sectors
+* 4 blocks per sector (64 in total)
+* 16 datas per block (each data is a number of 8 bits)
 
 This picture comes from this [tutorial](https://plaisirarduino.fr/rfid-avec-arduino/). Don't hesitate to check this tutorial for more informations.
 
@@ -89,7 +90,7 @@ To write on a card informations, you have to define the sector (in red) and the 
 
 ![Structure of the card](https://plaisirarduino.fr/arduino/wp-content/uploads/2018/07/contenue-RFID.png "RFID card structure")
 
-<span style="color:red">Don't write the last block of each sector</span> because sometime it can't be modified because it contains the UID. Some cards allow to modify the UID and others don't.
+`Don't write the block 0` because sometime it can't be modified because it contains the UID. Some cards allow to modify the UID and others don't.
 
 `Don't write the last block of each sector` because it can make the card unuseable (example : sector 1 block 7, sector 2 block 11, ...).
 
@@ -107,7 +108,7 @@ After the instanciation of an object RFID (object = RFID()), we can call methods
 
 * Wait the presence of a RFID tag
 
-    The first instruction initialize the detection, it enables IRQ on detect and waits a tag. If there is one, we "ask" the state of the tag. The request method returns `True` if the tag is **not** present. If request is successful, we can call the next instruction.
+    The first instruction initializes the detection, it enables IRQ to be on detect and waits for a tag. If there is one, we "ask" the state of the tag. The request method returns `True` if the tag is **not** present. If the request is successful, we can call the next instruction.
 
     ```
     object.wait_for_tag()
@@ -115,7 +116,7 @@ After the instanciation of an object RFID (object = RFID()), we can call methods
     ```
 * Recover the id of a RFID tag
 
-    This method returns if there is an error or not and the identifier of the tag.
+    This method returns if there is an error or not and returns the identifier of the tag.
 
     ```
     object.anticoll()
@@ -131,7 +132,7 @@ After the instanciation of an object RFID (object = RFID()), we can call methods
 
 * Authentification
 
-    With this instruction, we give the authentification that we use A or B (see Encryption part) and which block we want to acces with the key which is the third parameter in this instruction. The fourth is the identifier of the tag. 
+    With this instruction, we give the authentification that we use (A or B) (see Encryption part). We also give in parameters which block we want to access with the key which is the third parameter in this instruction. The fourth is the identifier of the tag. 
 
     ```
     object.card_auth(object.auth_a, block_number, key_array, uid)
@@ -139,7 +140,7 @@ After the instanciation of an object RFID (object = RFID()), we can call methods
 
  * Read values on the card
 
-    The first instruction read the entire block and the second one gives us only the informations.
+    The first instruction reads the entire block and the second one gives us only the informations.
 
     ```
     object.read(block_number)
@@ -158,7 +159,7 @@ After the instanciation of an object RFID (object = RFID()), we can call methods
 
 * Write on the RFID tag
 
-    Write an entire block with the first instruction or rewrite specific bytes in block using RFIDUtil class which is the second instruction.
+    We can write an entire block with the first instruction or rewrite specific bytes in block using RFIDUtil class with the second instruction.
 
     ```
     object.write(block_number, informations_array)
@@ -169,8 +170,8 @@ After the instanciation of an object RFID (object = RFID()), we can call methods
 
 ### RFID_writeCard
 
-The idea of this code is to run on another RFID reader to simulate a shop. The person asks for an item and this one is deliver a few days later by drone. <br>
-Then the person in the shop can launch this code to put the location of the commander's house on the tag which is going to be on the package and an unique UID on the RFID card of the customer which gives him the possibility to open the box.
+The idea of this code is to run on another RFID reader to simulate a shop. The person asks for an item and this one is delivered a few days later by drone. <br>
+Then the person in the shop can launch this code to put the location of the customer's house on the tag which is going to be on the package and an unique UID on the RFID card of the customer which gives him the possibility to open the box.
 
 For this, we wait to detect a tag. When we detect it, we ask the seller to enter the latitude and the longitude where the customer want to recover his package. After that we make manipulations on them to fit the structure of the RFID tag that I explain above.
 
