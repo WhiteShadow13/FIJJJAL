@@ -1,23 +1,17 @@
 #ifndef H_GYRO
 #define H_GYRO
 
+#include "struct.h"
+
 using namespace std;
 
 class Gyro {
     public:
         Gyro();
 
-        struct XY
-        {
-            int x;
-            int y;
-        };
-
         void initialise();
-        void readXY();
-
-        XY xy;
-
+        XY readXY();
+        
     private:
         int file;
 
