@@ -27,5 +27,11 @@ int main() {
     Gyro gyro = Gyro();
     gyro.initialise();
 
+
+    /* Initialize motors */
+
+    MotionController.setupMotors();
+
+
     return 0;
 }
