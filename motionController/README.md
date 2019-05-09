@@ -18,6 +18,8 @@ If you are watching your drone from the top.The opposite motors on a frame axis 
 - Motor upLeft and Motor downRight are rotating clockwise
 - Motor upRight and Motor downLeft are rotating counterClockwise
 
+To make the brushless motors turn counterClockwise , we just need to inverse two of the three wires when you plug the motors. 
+
 ## The MotionController
 
 So controlling the motors to go in the wanted direction is more simple.
@@ -51,6 +53,7 @@ To make the drone turning in the wanted direction , we choose to make it roll le
 ### Connexion with the Motors
 
 The controller simply instantiate the motors, send them the attributes they need and the wanted behaving.
+See more about motors at : [motor](/motor/README.md)
 
 ### Connexion with the PID
 
@@ -58,4 +61,4 @@ Each motor is connected to a pid.</br>
 From the Motioncontroller, we instanciate 4 motors to which send instructions according to the direction we want to go. 
 The pid implemented in each motor is going to recalculate and correct the instructions to communicate to the motors continuously according to the gyro information. 
 
-To see how the pid works, you can see [PID](/pid/pid.cpp).
+To see how the pid works, you can see [PID](/pid/README.md).
