@@ -7,16 +7,17 @@ using namespace std;
 
 int main() {
     PID pid = PID();
-    float value = 25;
+    float value = 25.0;
     float setPoint = 0.0;
 
-    ofstream fichier("../log.txt", ios::out);
+    ofstream fichier("./log.txt", ios::out);
 
     if(fichier) { 
         while (value >= 0.01 || value <= -0.01) {
-            fichier << pid.calcPID(setPoint, value) << endl;
-
-            value = 0.0;
+            float pidOutput = pid.calcPID(setPoint, value);
+            
+            fichier << "error:" << setPoint-value << "; Action:" << pidOutput << endl;
+            value -= 0.5;
         }
 
         fichier.close();
@@ -27,3 +28,4 @@ int main() {
 
     return 0;
 }
+
