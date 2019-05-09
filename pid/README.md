@@ -19,13 +19,13 @@ We can create four differents regulators:
 This regulator is based only on the present error. </br> So, the action on the systeme is calculate like that : `action = Kp * error` where Kp is equal to the proportional factor.
 
 ### Regulator PI
-The PI regulator use the proportional and integrator actions. </br> The integrator action use the futur error. Like we can not predict the futur, we sum all of the previous errors and divided it by the error's number, we take the mean. </br>
-We have `action = Kp * error + Ki * sumOfError` where Ki is egale to the integrator factor. </br>
+The PI regulator use the proportional and integrator actions. </br> The integrator action use the past error. </br>
+We have `action = Kp * error + Ki * previousError` where Ki is equal to the integrator factor. </br>
 Add a integrator action allows to cancel the static error, if we have not a integrator in the system, it's important to add it with the regulator.
 
 ### Regulator PD
-Now we can see of the futur and the present, we need to see in the past, the derivator action does that. </br>
-The output action is calculated like that : `Kp * error + Kd * previousError` where Kd is the derivator factor. </br>
+Now we can see of the past and the present, we need to see in the furu, like we can not predict the futur, we sum all of the previous errors and divided it by the error's number, we take the mean. </br> </br>
+The output action is calculated like that : `Kp * error + Kd * sumOfError` where Kd is the derivator factor. </br>
 The derivator action allows to increase the system's dynamic. Be careful, to add too much action, can destabilize the system.
 
 ### Regulator PID
