@@ -8,7 +8,7 @@ using namespace std;
 class Motor {
     public:
 
-        Motor()
+        Motor();
         Motor(int pin, PID pid);
 
         void initialize();
@@ -16,6 +16,7 @@ class Motor {
 
         void control(float setPoint, float input);
         void setPin(int pin);
+        void setPid(PID pid) ;
         
     private:
         int pin;

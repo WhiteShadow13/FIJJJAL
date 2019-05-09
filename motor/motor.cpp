@@ -30,5 +30,12 @@ void Motor::setPWM(float value) {
     gpioServo(this->pin, value);
 }
 
+void Motor::setPin(float value) {
+    this->pin = value;
+}
+
+void Motor::setPid(PID value) {
+    this->pid = value;
+}
 
 }
