@@ -36,7 +36,7 @@ gyro.o: ./gyro/gyro.cpp ./gyro/gyro.h
 gps.o: ./gps/gps.cpp ./gps/gps.h
 	$(CC) -o ./gps/gps.o -c ./gps/gps.cpp
 
-#gps
+#pathfinding
 pathfinding.o: ./pathfinding/pathfinding.cpp ./pathfinding/pathfinding.h
 	$(CC) -o ./pathfinding/pathfinding.o -c ./pathfinding/pathfinding.cpp
 
