@@ -103,7 +103,7 @@ By default these key has the value OxFF OxFF OxFF OxFF OxFF OxFF. We don't chang
 
 ### Important instructions
 
-After the instanciation of an object RFID, we can call methods on it to make some actions.
+After the instanciation of an object RFID (object = RFID()), we can call methods on it to make some actions.
 
 * Wait the presence of a RFID tag
 
@@ -137,5 +137,67 @@ After the instanciation of an object RFID, we can call methods on it to make som
     object.card_auth(object.auth_a, block_number, key_array, uid)
     ```
 
-    write/read instruction
+ * Read values on the card
+
+    The first instruction read the entire block and the second one gives us only the informations.
+
+    ```
+    object.read(block_number)
+    object.read(block_number)[1]
+    ```
+
+* Use the class RFIDUtil
+
+    RFIDUtil contains useful methods for dealing with tags and simplifies the previous instructions.
+
+    ```
+    util = object.util()
+    ```
+
+    For the simplification, you can see it on [the library's Github](https://github.com/ondryaso/pi-rc522).
+
+* Write on the RFID tag
+
+    Write an entire block with the first instruction or rewrite specific bytes in block using RFIDUtil class which is the second instruction.
+
+    ```
+    object.write(block_number, informations_array)
+    util.rewrite(block_number, partial_informations_array)
+    ```
+
+## Explanation of the logic of the code
+
+### RFID_writeCard
+
+The idea of this code is to run on another RFID reader to simulate a shop. The person asks for an item and this one is deliver a few days later by drone. <br>
+Then the person in the shop can launch this code to put the location of the commander's house on the tag which is going to be on the package and an unique UID on the RFID card of the customer which gives him the possibility to open the box.
+
+For this, we wait to detect a tag. When we detect it, we ask the seller to enter the latitude and the longitude where the customer want to recover his package. After that we make manipulations on them to fit the structure of the RFID tag that I explain above.
+
+We can only put in the RFID tag integer of 8 bits (value from 0 to 255). Then we split these numbers by the comma character and decompose the decimal parts two by two in three parts. We can't take by three numbers because the max value is then 999 and this value is not possible to put in the RFID tag. <br>
+We use the value 255 for positive and 0 for negative values.
+
+After that, we write on the RFID tag in a certain order :
+
+```
+util.rewrite(9, [latitude_sign, latitude_integer, latitude_decimal1, latitude_decimal2, latitude_decimal3, longitude_sign, longitude_integer, longitude_decimal1, longitude_decimal2, longitude_decimal3])
+```
+We let two seconds to the seller to put the customer's card on the RFID reader and write on this card the UID of the other RFID tag.
+
+### RFID_readCard
+
+The idea of this code is to run the other parts when the package is in the box.
+
+For this, we wait that the seller closes the door of the box under the drone. We detect it thanks to the switch. Once it's done, we check if there is a RFID tag. If it's ok, we read the informations on the card at the right block and reconstruct the latitude and the longitude. We activate the electromagnet to close the door and run the code with the correct parameters to start to fly.
+
+Once this code has finished that means that we arrived to the correct location. We wait for a card with the uid of the tag on the package at the block 9. If the customer scan his card, the electromagnet turn off and he can take his package. After 5 second, we redo all the routine.
+
+The part of the code for the return is missing because of a lack of time.
+
+## Authors
+
+* **Beard Julien** - *Initial work* - [Julienyou](https://github.com/Julienyou)
+
+
+    
 
