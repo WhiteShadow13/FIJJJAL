@@ -29,3 +29,6 @@ void Motor::control(float setPoint, float input) {
 void Motor::setPWM(float value) {
     gpioServo(this->pin, value);
 }
+
+
+}
