@@ -36,11 +36,11 @@ try:
                         print("UID: " + str(uid))
                         # Select Tag is required before Auth
                         if not rdr.select_tag(uid):
-                            # Auth for block 10 (block 2 of sector 2) using default shipping key A
+                            # Auth for block 9 (block 1 of sector 2) using default shipping key A
                             if not rdr.card_auth(rdr.auth_a, 9, [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF], uid):
                                 # This will print something like (False, [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
                                 
-                                # Read the entire block 10 (second argument is the informations)
+                                # Read the entire block 9 (second argument is the informations)
                                 informations = rdr.read(9)[1]
                                 print(informations)
 

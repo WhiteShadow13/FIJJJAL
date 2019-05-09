@@ -42,6 +42,7 @@ try:
                 latitude_integer = int(latitude_split[0])
                 latitude_decimal = latitude_split[1]
                 
+                # Allow us to have always 6 decimals and easily put it in the RFID card
                 if (len(latitude_decimal) < 6):
                     number_zero = 6 - len(latitude_decimal)
                     while (number_zero != 0):
