@@ -1,7 +1,17 @@
 # Gyroscope
 
-A gyrscope  is a device used for measuring or maintaining orientation and angular velocity. It is a spinning wheel or disc in which the axis of rotation is free to assume any orientation by itself.When rotating, the orientation of this axis is unaffected by tilting or rotation of the mounting, according to the conservation of angular momentum. </br>
+A commun gyrscope is a device used for measuring or maintaining orientation and angular velocity.It is a spinning wheel or disc in which the axis of rotation (spin axis) is free to assume any orientation by itself. When rotating, the orientation of this axis is unaffected by tilting or rotation of the mounting, according to the conservation of angular momentum. </br>
 
+![picture alt](https://commons.wikimedia.org/wiki/File:3D_Gyroscope.png#/media/File:3D_Gyroscope.png)
+
+In electronic we use gyro sensors, also known as angular rate sensors or angular velocity sensors, are devices that sense angular velocity.
+
+![picture alt](gyro/gyro.png)
+
+Vibration gyro sensors sense angular velocity from the Coriolis force applied to a vibrating object.
+Here an example Epson 's double-T structure crystal element.
+
+![picture alt](gyro/gyro2.png)
 
 ## L3G4200D
 
