@@ -74,7 +74,7 @@ float PID::calcP(float setPoint, float input) {
     float error = setPoint - input;
     float output = this->Kp * error;
 
-    return calcMap(output);
+    return output;
 }
 
 /* Regulator proporrional & integrator */
@@ -85,7 +85,7 @@ float PID::calcPI(float setPoint, float input) {
     this->sumOfError += error;
     this->cycle ++;
 
-    return calcMap(output);
+    return output;
 }
 
 /* Regulator proportional & derivator */
@@ -95,7 +95,7 @@ float PID::calcPD(float setPoint, float input) {
     float output = (this->Kp * error) + (this->Kd * this->previousError);
     this->previousError = error;
 
-    return calcMap(output);
+    return output;
 }
 
 /* Regulator proportional, integrator & derivator */
@@ -107,7 +107,7 @@ float PID::calcPID(float setPoint, float input) {
     this->sumOfError += error;
     this->cycle ++;
 
-    return calcMap(output);
+    return output;
 }
 
 /* Allows to map the regulator output at the ESC input */
