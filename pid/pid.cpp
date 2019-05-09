@@ -74,40 +74,40 @@ float PID::calcP(float setPoint, float input) {
     float error = setPoint - input;
     float output = this->Kp * error;
 
-    return calcMap(output);
+    return output;
 }
 
 /* Regulator proporrional & integrator */
 /* Takes into account the instant error and the prediction of the futur error */
-float PID::calcPI(float setPoint, float input) {
+float PID::calcPD(float setPoint, float input) {
     float error = setPoint - input;
-    float output = (this->Kp * error) + (this->Ki * this->sumOfError/this->cycle);
+    float output = (this->Kp * error) + (this->Kd * this->sumOfError/this->cycle);
     this->sumOfError += error;
     this->cycle ++;
 
-    return calcMap(output);
+    return output;
 }
 
 /* Regulator proportional & derivator */
 /* Takes into account the instant error and the previous error */
-float PID::calcPD(float setPoint, float input) {
+float PID::calcPI(float setPoint, float input) {
     float error = setPoint - input;
-    float output = (this->Kp * error) + (this->Kd * this->previousError);
+    float output = (this->Kp * error) + (this->Ki * this->previousError);
     this->previousError = error;
 
-    return calcMap(output);
+    return output;
 }
 
 /* Regulator proportional, integrator & derivator */
 /* Taks into account the instant, futur and previous errors */
 float PID::calcPID(float setPoint, float input) {
     float error = setPoint - input;
-    float output = (this->Kp * error) + (this->Kd * this->previousError) + (this->Ki * this->sumOfError/this->cycle);
+    float output = (this->Kp * error) + (this->Ki * this->previousError) + (this->Kd * this->sumOfError/this->cycle);
     this->previousError = error;
     this->sumOfError += error;
     this->cycle ++;
 
-    return calcMap(output);
+    return output;
 }
 
 /* Allows to map the regulator output at the ESC input */
