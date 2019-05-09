@@ -11,16 +11,18 @@ The motionCotroller here comes to implement the different functions for controll
 - Going Right
 
 </br>
-The principe is the following. Motors are going to rotate clockwise or counter clockwise according to their place. 
-If you are watching your drone from the top.The opposite motors will have the same sense of rotation. So here : 
 
-- Motor upRight and Motor downLeft are rotating clockwise
-- Motor upLeft and Motor downRight are rotating counterClockwise
+The principe is the following. Motors are going to rotate clockwise or counter clockwise according to their place. 
+If you are watching your drone from the top.The opposite motors on a frame axis will have the same sense of rotation.</br>
+     
+- Motor upLeft and Motor downRight are rotating clockwise
+- Motor upRight and Motor downLeft are rotating counterClockwise
 
 ## The MotionController
+
 So controlling the motors to go in the wanted direction is more simple.
 
-So according to the direction with will have : 
+According to the direction with will have : 
 
 - Ascending.</br>
     Motors UpLeft and downRight will increase their RPM</br>
@@ -46,8 +48,14 @@ To make the drone turning in the wanted direction , we choose to make it roll le
 
 ### Connexion with the GPS
     To be complete ...
+### Connexion with the Motors
+
+The controller simply instantiate the motors, send them the attributes they need and the wanted behaving.
 
 ### Connexion with the PID
 
 Each motor is connected to a pid.</br>
-From the Motioncontroller, we instanciate 4 motors to which send instructions according to the direction we want to go. The pid implemented in each motor is going to verify trough the gyro, the direction of the drone and correct the instructions continuously according to it.
+From the Motioncontroller, we instanciate 4 motors to which send instructions according to the direction we want to go. 
+The pid implemented in each motor is going to recalculate and correct the instructions to communicate to the motors continuously according to the gyro information. 
+
+To see how the pid works, you can see [PID](/pid/pid.cpp).

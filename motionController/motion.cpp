@@ -38,7 +38,7 @@ void MotionController :: setupMotors( int pin1, int pin2 , int pin3, int pin4
 
 void MotionController :: ascend(float p1 ,float input1 ,
                                  float p2,float input2, float p3 , float input3,float p4 ,float input4){
-    
+    this->gyro.readXY();
     this->upRightMotor.control(p1, input1);
     this->upLeftMotor.control(p2, input2);
     this->downRightMotor.control(p3, input3);
