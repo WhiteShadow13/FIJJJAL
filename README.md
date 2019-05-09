@@ -10,4 +10,5 @@ Adrien PETIT </br>
 Jonathan PETIT </br>
 
 ## Table of contents
-[PID regulator](./pid/README.md)
+[PID regulator](./pid/README.md) </br>
+[GPS](./gps/README.md)
