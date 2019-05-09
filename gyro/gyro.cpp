@@ -11,12 +11,13 @@
 
 using namespace std;
 
-/* Constructor */
 Gyro::Gyro() {
     
 }
 
+//Initialise Gyroscope
 void Gyro::initialise() {
+	// Get I2C device, L3G4200D I2C address is 0x69
     this->i2cInitialise("/dev/i2c-1", 0x69);
 
     char config[2] = {0};
@@ -31,28 +32,30 @@ void Gyro::initialise() {
     sleep(1);
 }
 
+//Initialise I2C
 void Gyro::i2cInitialise(char *bus, char address) {
     this->file = open(bus, O_RDWR);
-
-	// Get I2C device, L3G4200D I2C address is 0x68(104)
     ioctl(this->file, I2C_SLAVE, address);
 }
 
+//Read X and Y
 void Gyro::readXY() {
+	// Read xGyro lsb, msb data from register(0x28, 0x29)
 	this->xy.x = this->readAxis(0x28, 0x29);
+	// Read yGyro lsb, msb data from register(0x2A, 0x2B)
 	this->xy.y = this->readAxis(0x2A, 0x2B);
 }
 
+//Read Axis
 int Gyro::readAxis(char lsb_add, char msb_add){
 	char res[1] = {0};
 	char reg[1] = {lsb_add};
 
-	// Read xGyro lsb data from register(0x28)
+	
 	write(this->file, reg, 1);
 	read(this->file, res, 1);
 	char lsb_res = res[0];
 
-	// Read xGyro msb data from register(0x29)
 	reg[0] = msb_add;
 	write(this->file, reg, 1);
 	read(this->file, res, 1);
