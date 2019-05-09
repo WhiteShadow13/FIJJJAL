@@ -2,6 +2,7 @@
 Drone project for ECAM Brussels school
 
 ## Makers
+Julien BEARD </br>
 Fatine BEN MOUSSA </br>
 Maxime DESAINTJEAN </br>
 Ilias EL ABBASSI </br>
