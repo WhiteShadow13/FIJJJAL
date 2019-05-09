@@ -87,9 +87,55 @@ This picture comes from this [tutorial](https://plaisirarduino.fr/rfid-avec-ardu
 
 To write on a card informations, you have to define the sector (in red) and the address or the block (in blue). We will see later how to do this in python. 
 
-![picture alt](https://plaisirarduino.fr/arduino/wp-content/uploads/2018/07/contenue-RFID.png "RFID card structure")
+![Structure of the card](https://plaisirarduino.fr/arduino/wp-content/uploads/2018/07/contenue-RFID.png "RFID card structure")
 
 `Don't modify the block 0` because sometime it can't be modified because it contains the UID. Some cards allow to modify the UID and others don't.
 
 `Don't write the last block of each sector` because it can make the card unuseable (example : sector 1 block 7, sector 2 block 11, ...).
+
+This structure is very important because it determines the structure of the code.
+
+### Encryption
+
+We can also encrypt the data that we put in the differents sectors. For this, we use two keys, a `key A` and a `key B`. Then, the person, who wants to read informations in a certain sector, has to have the correct key to decrypt them. Otherwise he can't read them.
+
+By default these key has the value OxFF OxFF OxFF OxFF OxFF OxFF. We don't change it at this moment but it can be interesting to change them. In fact, it can prevent that anybody can read and write on the card.
+
+### Important instructions
+
+After the instanciation of an object RFID, we can call methods on it to make some actions.
+
+* Wait the presence of a RFID tag
+
+    The first instruction initialize the detection, it enables IRQ on detect and waits a tag. If there is one, we "ask" the state of the tag. The request method returns `True` if the tag is **not** present. If request is successful, we can call the next instruction.
+
+    ```
+    object.wait_for_tag()
+    object.request()
+    ```
+* Recover the id of a RFID tag
+
+    This method returns if there is an error or not and the identifier of the tag.
+
+    ```
+    object.anticoll()
+    ```
+
+* Select the RFID tag by its identifier
+
+    Thanks to this instruction, we can now do whatever we want.
+
+    ```
+    object.select_tag(uid)
+    ```
+
+* Authentification
+
+    With this instruction, we give the authentification that we use A or B (see Encryption part) and which block we want to acces with the key which is the third parameter in this instruction. The fourth is the identifier of the tag. 
+
+    ```
+    object.card_auth(object.auth_a, block_number, key_array, uid)
+    ```
+
+    write/read instruction
 
