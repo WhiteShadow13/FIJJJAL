@@ -11,5 +11,6 @@ Adrien PETIT </br>
 Jonathan PETIT </br>
 
 ## Table of contents
-[RFID](./rfid/readme.md)
-[PID regulator](./pid/README.md)
+[RFID](./rfid/readme.md) </br>
+[PID regulator](./pid/README.md) </br>
+[GPS](./gps/README.md)
