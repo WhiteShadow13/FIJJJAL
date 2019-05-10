@@ -15,7 +15,7 @@ class MotionController {
         MotionController();
         MotionController(Motor upRightMotor , Motor upLeftMotor
                         ,Motor downRightMotor , Motor downLeftMotor , 
-                        Gyro gyro, Ultrasound ultrasound);
+                        Gyro gyro, Ultrasound ultrasound[4]);
         void setupMotors(int pin1 , int pin2 , int pin3, int pin4); 
         void setupPIDS(){     };
 

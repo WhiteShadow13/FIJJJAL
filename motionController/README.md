@@ -62,6 +62,7 @@ See more about motors at : [motor](/motor/README.md)
 ## Connexion with the Gyro##
 
 Periodically the controller is going to ask the position of the drone to send it to the pid to correct the values on the motors if needed.
+See more about motors at : [Gyro](/gyro/README.md)
 
 ## Connexion with the PID ##
 
