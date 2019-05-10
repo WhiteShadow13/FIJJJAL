@@ -6,9 +6,9 @@
 using namespace std;
 
 //Constuctor
-Motor::Motor(int pin, PID pid) {
+Motor::Motor(int pin) {
     this->pin = pin; 
-    this->pid = pid;
+    
 }
 
 //Motor Initilise 
@@ -35,4 +35,11 @@ void Motor::control(float setPoint, float input) {
 //Set PWM
 void Motor::setPWM(float value) {
     gpioServo(this->pin, value);
+}
+
+void Motor::setPin(float value) {
+    this->pin = value;
+}
+
+
 }

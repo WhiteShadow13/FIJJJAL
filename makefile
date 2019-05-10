@@ -40,6 +40,10 @@ gps.o: ./gps/gps.cpp ./gps/gps.h
 pathfinding.o: ./pathfinding/pathfinding.cpp ./pathfinding/pathfinding.h
 	$(CC) -o ./pathfinding/pathfinding.o -c ./pathfinding/pathfinding.cpp
 
+#motionController
+
+motionController.o : ./motionController/motionController.cpp ./pathfinding/pathfinding.h
+	$(cc) -o ./motionController/motionController.o ./motionController/motionController.cpp
 
 clean:
 	rm ./*.o
@@ -49,3 +53,4 @@ clean:
 	rm ./pid/*.o
 	rm ./gyro/*.o
 	rm ./gps/*.o
+	rm ./motionController/*.o

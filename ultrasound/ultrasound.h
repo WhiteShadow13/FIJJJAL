@@ -7,6 +7,7 @@ using namespace std;
 
 class Ultrasound {
     public:
+        Ultrasound();
         Ultrasound(int echo, int trig);
         
         void initialize();

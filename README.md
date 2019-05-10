@@ -13,4 +13,8 @@ Jonathan PETIT </br>
 ## Table of contents
 [RFID](./rfid/readme.md) </br>
 [PID regulator](./pid/README.md) </br>
-[GPS](./gps/README.md)
+[GPS](./gps/README.md)</br>
+[Motion Controller](./motionController/README.md)</br>
+[Motor](./motor/README.md)</br>
+
+
