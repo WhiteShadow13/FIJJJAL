@@ -6,7 +6,7 @@
 #include "./ultrasound/ultrasound.h"
 #include "./gyro/gyro.h"
 #include "fijjal.h"
-
+#include "./motionController/motion.h"
 
 int main() {
     /* Initialise GPIO pin */
@@ -29,9 +29,8 @@ int main() {
 
 
     /* Initialize motors */
-
     MotionController.setupMotors();
-
+    MotionController.setupPIDS();
 
     return 0;
 }
