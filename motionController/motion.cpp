@@ -103,29 +103,20 @@ double MotionController :: getDistance(){
 void MotionController :: move(string direction , float p1 ,float input1 ,
                                  float p2,float input2, float p3 , float input3,float p4 ,float input4){
                                 
-
-                                // verify no obstacle near .
-
-
-                                    this->ultrasound.getDistance();
-
-
-                                //if forward
+                                //if forward 
                                 if (direction == "forward") {
-
-                                    
-
-
                                     this->upRightMotor.control(p1, input1);
                                     this->upLeftMotor.control(p2, input2);
                                     this->downRightMotor.control(p3, input3);
                                     this->downLeftMotor.control(p4 , input4);
                                     } 
-                                    
-
-
+                                if (direction == "backward"){
+                                    this->upRightMotor.control(p1, input1);
+                                    this->upLeftMotor.control(p2, input2);
+                                    this->downRightMotor.control(p3, input3);
+                                    this->downLeftMotor.control(p4 , input4);
                                 }
-
+                                };
 
 
 
