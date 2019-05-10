@@ -6,9 +6,9 @@
 using namespace std;
 
 //Constuctor
-Motor::Motor(int pin, PID pid) {
+Motor::Motor(int pin) {
     this->pin = pin; 
-    this->pid = pid;
+    
 }
 
 //Motor Initilise 
@@ -41,8 +41,5 @@ void Motor::setPin(float value) {
     this->pin = value;
 }
 
-void Motor::setPid(PID value) {
-    this->pid = value;
-}
 
 }
