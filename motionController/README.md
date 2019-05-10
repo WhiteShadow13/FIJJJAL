@@ -3,7 +3,7 @@
 The motionCotroller here comes to implement the different functions for controlling the drone as :
 
 - Setup the Motors 
-- Ascending
+- take off
 - Landing 
 - Going Forward 
 - Going Backward 
@@ -28,7 +28,7 @@ The quadcopter should continuously take the required measurements from the senso
 
 According to the direction with will have : 
 
-- Ascending.</br>
+- take Off.</br>
     Motors UpLeft and downRight will increase their RPM</br>
     Motors upRight and downLeft will increase their RPM
 

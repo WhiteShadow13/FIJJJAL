@@ -14,9 +14,18 @@ class MotionController {
     public:
         MotionController();
         MotionController(Motor upRightMotor , Motor upLeftMotor
-                        ,Motor downRightMotor , Motor downLeftMotor , Gyro gyro, Ultrasound ultrasound);
+                        ,Motor downRightMotor , Motor downLeftMotor , 
+                        Gyro gyro, Ultrasound ultrasound);
         void setupMotors(int pin1 , int pin2 , int pin3, int pin4); 
         void setupPIDS(){     };
+
+        void landing(float p1,float input1 ,
+                                 float p2,float input2, float p3 , float input3,float p4 ,float input4);
+
+        void takeOFf(float p1,float input1 ,
+                                 float p2,float input2, float p3 , float input3,float p4 ,float input4);
+
+
         void move(string direction, float setpointp1 ,float input1 , 
                     float setpointp2,float input2, 
                     float setpointp3 , float input3,

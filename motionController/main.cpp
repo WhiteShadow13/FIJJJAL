@@ -25,13 +25,8 @@ Ultrasound ultrasound ;
 // ===                      INITIAL SETUP                       ===
 // ================================================================
 
-void setup(){
+void setup(){ 
     
-    //initialisation
-    gps.gpsInit(); 
-    gyro.initialise(); 
-    
-
     //motion controller 
     MotionController motionController = MotionController(motorUpLeft, motorUpRight,motorDownLeft,motorDownRight, gyro, ultrasound); 
 

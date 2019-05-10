@@ -2,16 +2,13 @@ using namespace std;
 
 #include "motion.h"
 
+/*PID array ( 2 pids , 1 for each axis (x,y)) */
+PID pids[2];
 
+#define PID_ROLL_X 0
+#define PID_PITCH_Y 1
+//#define PID_YAW_RATE 3
 
-/*PID array ( 4 pids , two for each axis (x,y)) */
-PID pids[4];
-#define PID_PITCH_X 0
-#define PID_ROLL_X 1
-#define PID_PITCH_Y 2
-#define PID_ROLL_Y 3
-//#define PID_YAW_RATE 4
-//#define PID_YAW_STAB 5
 
 /*Constructor*/
 MotionController:: MotionController (Motor upRightMotor , Motor upLeftMotor
@@ -33,17 +30,8 @@ void MotionController :: setupPIDS(){
     /* setting pids on different axis */
 
     //Axis 1
-    // min and max bound
-    pids[PID_PITCH_X].setMinBound(1500);
-    pids[PID_PITCH_X].setMaxBound(1900);
-    
+    // min and max bounds
     //setting kp,ki,kd
-    pids[PID_PITCH_X].setKp(0.02);
-    pids[PID_PITCH_X].setKp(0.02);
-    pids[PID_PITCH_X].setKi(0.01);
-    pids[PID_PITCH_X].setKd(0.005);
-
-    
     pids[PID_ROLL_X].setMinBound(1500);
     pids[PID_ROLL_X].setMaxBound(1900);
     pids[PID_ROLL_X].setKp(0.02);
@@ -57,13 +45,6 @@ void MotionController :: setupPIDS(){
     pids[PID_PITCH_Y].setKp(0.02);
     pids[PID_PITCH_Y].setKi(0.01);
     pids[PID_PITCH_Y].setKd(0.005);
-
-
-    pids[PID_ROLL_Y].setMinBound(1500);
-    pids[PID_ROLL_Y].setMaxBound(1900);
-    pids[PID_ROLL_Y].setKp(0.02);
-    pids[PID_ROLL_Y].setKp(0.01);
-    pids[PID_ROLL_Y].setKp(0.005);
 
 };
 
@@ -105,10 +86,27 @@ void MotionController :: move(string direction , float p1 ,float input1 ,
                                 
                                 //if forward 
                                 if (direction == "forward") {
-                                    this->upRightMotor.control(p1, input1);
-                                    this->upLeftMotor.control(p2, input2);
-                                    this->downRightMotor.control(p3, input3);
-                                    this->downLeftMotor.control(p4 , input4);
+                                    //detect obstacle with front ultrasound sensor 
+                                    double distance = getDistance();
+
+                                    if (distance > 1000){ // si la distance est inférieure à 1m
+                                    
+                                    //stabilized movevement
+                                    this->upRightMotor.control(p1, input1); //lower
+                                    this->upLeftMotor.control(p2, input2); //lower
+                                    this->downRightMotor.control(p3, input3); // faster 
+                                    this->downLeftMotor.control(p4 , input4); // faster
+
+                                    }
+
+                                    else {
+                                        // distance to short so change the direction
+                                        // when distance is > 1000
+                                        // recalculate path
+                                        // movement
+                                        
+                                    }
+                                    
                                     } 
                                 if (direction == "backward"){
                                     this->upRightMotor.control(p1, input1);
@@ -118,6 +116,35 @@ void MotionController :: move(string direction , float p1 ,float input1 ,
                                 }
                                 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+void MotionController :: takeOFf(float p1 ,float input1 ,
+                                 float p2,float input2, float p3 , float input3,float p4 ,float input4){
+    this->upRightMotor.control(p1, input1);
+    this->upLeftMotor.control(p2, input2);
+    this->downRightMotor.control(p3, input3);
+    this->downLeftMotor.control(p4 , input4);
+};
+
+void MotionController :: landing(float p1 ,float input1 ,
+                                 float p2,float input2, float p3 , float input3,float p4 ,float input4){
+    
+    this->upRightMotor.control(p1, input1);
+    this->upLeftMotor.control(p2, input2);
+    this->downRightMotor.control(p3, input3);
+    this->downLeftMotor.control(p4 , input4);
+};
 
 
 /* motion functions 
