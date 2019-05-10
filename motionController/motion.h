@@ -5,7 +5,7 @@
 #include "../motor/motor.h"
 #include "../gyro/gyro.h"
 #include "../gyro/struct.h"
-#include "ultrasound.h"
+#include "../ultrasound/ultrasound.h"
 
 using namespace std;
 
@@ -14,7 +14,7 @@ class MotionController {
     public:
         MotionController();
         MotionController(Motor upRightMotor , Motor upLeftMotor
-                        ,Motor downRightMotor , Motor downLeftMotor , Gyro gyro);
+                        ,Motor downRightMotor , Motor downLeftMotor , Gyro gyro, Ultrasound ultrasound);
 
         void setupMotors(int pin1 , int pin2 , int pin3, int pin4); 
         void setupPIDS(){

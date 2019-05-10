@@ -19,7 +19,7 @@ Gps gps;
 
 /*ultrasound array */
 
-Ultrasound ultrasounds[4] ; 
+Ultrasound ultrasound ; 
 
 // ================================================================
 // ===                      INITIAL SETUP                       ===
@@ -33,7 +33,7 @@ void setup(){
     
 
     //motion controller 
-    MotionController motionController = MotionController(motorUpLeft, motorUpRight,motorDownLeft,motorDownRight, gyro); 
+    MotionController motionController = MotionController(motorUpLeft, motorUpRight,motorDownLeft,motorDownRight, gyro, ultrasound); 
 
     //setup PIDS
     motionController.setupPIDS();
@@ -43,3 +43,7 @@ void setup(){
 
 
 }
+
+// ================================================================
+// ===                      Do the Magic !                        ===
+// ================================================================

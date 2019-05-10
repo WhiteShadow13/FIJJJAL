@@ -2,6 +2,8 @@ using namespace std;
 
 #include "motion.h"
 
+
+
 /*PID array ( 4 pids , two for each axis (x,y)) */
 PID pids[4];
 #define PID_PITCH_X 0
@@ -11,17 +13,19 @@ PID pids[4];
 //#define PID_YAW_RATE 4
 //#define PID_YAW_STAB 5
 
-
 /*Constructor*/
 MotionController:: MotionController (Motor upRightMotor , Motor upLeftMotor
-                        ,Motor downRightMotor , Motor downLeftMotor , Gyro gyro)
+                        ,Motor downRightMotor , Motor downLeftMotor , Gyro gyro,
+                        Ultrasound ultrasound)          
                         {
                             this->upRightMotor = upRightMotor;
                             this->upLeftMotor = upLeftMotor ;
                             this->downRightMotor = downRightMotor ;
                             this->downLeftMotor = downLeftMotor ;
                             this->gyro = gyro ;
+                            this->ultrasound = ultrasound;
                         }
+
 
 /* PID configuration */
 void MotionController :: setupPIDS(){
@@ -95,8 +99,6 @@ double MotionController :: getDistance(){
     return distance;
 }
 
-
-
 /* motion functions */
 
 void MotionController :: ascend(float p1 ,float input1 ,
@@ -107,8 +109,6 @@ void MotionController :: ascend(float p1 ,float input1 ,
     this->downLeftMotor.control(p4 , input4);
 };
 
-
-/* motion functions */
 void MotionController :: descend(float p1 ,float input1 ,
                                  float p2,float input2, float p3 , float input3,float p4 ,float input4){
     
@@ -120,7 +120,6 @@ void MotionController :: descend(float p1 ,float input1 ,
 
 void MotionController :: forward(float p1 ,float input1 ,
                                  float p2,float input2, float p3 , float input3,float p4 ,float input4){
-    
     this->upRightMotor.control(p1, input1);
     this->upLeftMotor.control(p2, input2);
     this->downRightMotor.control(p3, input3);
