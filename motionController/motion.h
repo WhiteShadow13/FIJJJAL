@@ -22,23 +22,26 @@ class MotionController {
         };
 
 
-        void forward(float p1 ,float input1 ,
-                                 float p2,float input2, float p3 , float input3,float p4 ,float input4);
+        /* void forward(float p1 ,float input1 ,
+                                float p2,float input2, float p3 , float input3,float p4 ,float input4);
         void turnLeft(float p1 ,float input1 ,
                                  float p2,float input2, float p3 , float input3,float p4 ,float input4);
         void turnRight(float p1 ,float input1 ,
                                  float p2,float input2, float p3 , float input3,float p4 ,float input4); 
         void backward(float p1 ,float input1 ,
-                                 float p2,float input2, float p3 , float input3,float p4 ,float input4);
+                                float p2,float input2, float p3 , float input3,float p4 ,float input4);
 
         void descend(float p1 ,float input1 ,
                                  float p2,float input2, float p3 , float input3,float p4 ,float input4);
 
         void ascend(float p1 ,float input1 ,
                                  float p2,float input2, float p3 , float input3,float p4 ,float input4);
+        */
+
         
     
-    
+        void move(string direction, float p1 ,float input1 ,
+                                 float p2,float input2, float p3 , float input3,float p4 ,float input4);
         XY getGyroValue();
         double getDistance();
 

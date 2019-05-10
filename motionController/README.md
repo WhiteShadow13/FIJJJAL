@@ -1,6 +1,6 @@
 # How does it works ? #
 
-The motionCotroller here comes to implement the different functions for controlling the drone as  :
+The motionCotroller here comes to implement the different functions for controlling the drone as :
 
 - Setup the Motors 
 - Ascending
@@ -12,7 +12,7 @@ The motionCotroller here comes to implement the different functions for controll
 </br>
 
 The principe is the following. Motors are going to rotate clockwise or counter clockwise according to their place. 
-If you are watching your drone from the top.The opposite motors on a frame spin will have the same sense of rotation.</br>
+If you are watching your drone from the top.The opposite motors on a frame spin will have the same sense of rotation. If all rotors turn in the same direction, the craft would spin just like the regular helicopter without the tail rotor</br>
      
 - Motor upLeft and Motor downRight are rotating clockwise
 - Motor upRight and Motor downLeft are rotating counterClockwise
@@ -23,6 +23,7 @@ To make the brushless motors turn counterClockwise , we just need to inverse two
 ## The MotionController ##
 
 So controlling the motors to go in the wanted direction is more simple.
+The quadcopter should continuously take the required measurements from the sensors, and make alterations to the speed of each rotor to maintain the body level. 
 
 According to the direction with will have : 
 
