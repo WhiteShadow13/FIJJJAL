@@ -3,9 +3,9 @@ all : drone.exe
 CC = g++
 
 drone.exe: main.o fijjal.o motor.o ultrasound.o pid.o gyro.o gps.o
-	$(CC) -o drone.exe main.o fijjal.o ./motor/motor.o ./ultrasound/ultrasound.o ./pid/pid.o ./gyro/gyro.o ./gps/gps.o -lpigpio -lpthread
+	$(CC) -o drone.exe main.o fijjal.o ./motor/motor.o ./ultrasound/ultrasound.o ./pid/pid.o ./gyro/gyro.o ./gps/gps.o ./pathfinding/pathfinding.o -lpigpio -lpthread
 
-main.o: main.cpp fijjal.h ./motor/motor.h ./ultrasound/ultrasound.h ./pid/pid.h ./gyro/gyro.h ./gps/gps.h
+main.o: main.cpp fijjal.h ./motor/motor.h ./ultrasound/ultrasound.h ./pid/pid.h ./gyro/gyro.h ./gps/gps.h ./pathfinding/pathfinding.h
 	$(CC) -o main.o -c main.cpp
 
 
@@ -35,6 +35,10 @@ gyro.o: ./gyro/gyro.cpp ./gyro/gyro.h
 #gps
 gps.o: ./gps/gps.cpp ./gps/gps.h
 	$(CC) -o ./gps/gps.o -c ./gps/gps.cpp
+
+#pathfinding
+pathfinding.o: ./pathfinding/pathfinding.cpp ./pathfinding/pathfinding.h
+	$(CC) -o ./pathfinding/pathfinding.o -c ./pathfinding/pathfinding.cpp
 
 
 clean:

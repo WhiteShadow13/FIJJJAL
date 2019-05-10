@@ -1,7 +1,7 @@
 #include <iostream>
-//#include <pigpio.h>
 
 #include "gyro.h"
+#include "struct.h"
 
 using namespace std;
 
@@ -11,9 +11,10 @@ int main()
 
     gyro.initialise();
     while(1){
-        gyro.readXY();
+        XY xy;
+        xy = gyro.readXY();
             
-        printf("Rotation in X-Axis : %d \n", gyro.xy.x);
-	    printf("Rotation in Y-Axis : %d \n", gyro.xy.y);
+        printf("Rotation in X-Axis : %d \n", xy.x);
+	    printf("Rotation in Y-Axis : %d \n", xy.y);
     }
 }
