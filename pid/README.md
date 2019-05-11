@@ -71,3 +71,10 @@ To be sure that the value send by the function is between the maximum and minimu
 1) The new output is smaller than *minBound*, we send the minimum bound.
 2) The new output is greater than *maxBound*, we send the maximum bound.
 3) The new output is between both bounds, we send the new output.
+
+## Tests
+We have tested the regulator with the [main.cpp](./main.cpp). </br>
+We simulate the value sends by the gyroscope with *value* and the set point with *setPoint*. We apply the PID function to put the action with the error in a log file. </br>
+And for simulating the drone motion, we decrease *value* by 0.5. </br>
+
+Unfortunately, we did not test the function on the motors and the mapping function does not work too. </br>
