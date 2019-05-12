@@ -78,3 +78,6 @@ We simulate the value sends by the gyroscope with *value* and the set point with
 And for simulating the drone motion, we decrease *value* by 0.5. </br>
 
 Unfortunately, we did not test the function on the motors and the mapping function does not work too. </br>
+
+## Authors
+- Merel Ludovic - *Initial work* - [WhiteShadow13](https://github.com/WhiteShadow13)
